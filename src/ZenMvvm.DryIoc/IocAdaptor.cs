@@ -1,21 +1,21 @@
 ﻿using System;
-using SmartDi;
+using DryIoc;
 
 namespace ZenMvvm
 {
     /// <summary>
-    /// Adapts the <see cref="IDiContainer"/> to implement <see cref="IIoc"/>
+    /// Adapts the <see cref="IContainer"/> to implement <see cref="IIoc"/>
     /// </summary>
     public class IocAdaptor : IIoc
     {
-        internal readonly IDiContainer container;
+        internal readonly IContainer container;
 
         /// <summary>
         /// Construct the <see cref="IocAdaptor"/> from the provided
         ///  see <paramref name="container"/>
         /// </summary>
         /// <param name="container"></param>
-        public IocAdaptor(IDiContainer container)
+        public IocAdaptor(IContainer container)
         {
             this.container = container;
         }
@@ -27,7 +27,7 @@ namespace ZenMvvm
         /// <returns></returns>
         public object Resolve(Type typeToResolve)
         {
-            return container.Resolve(typeToResolve);
+            return container.Resolve(typeToResolve, IfUnresolved.Throw);
         }
     }
 }
