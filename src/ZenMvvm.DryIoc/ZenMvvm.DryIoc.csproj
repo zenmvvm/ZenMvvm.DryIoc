@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <!-- General -->
+        <AssemblyName>ZenMvvm.DryIoc</AssemblyName>
+        <Description></Description>
+        <Copyright>Copyright 2020 Guy Antoine</Copyright>
+        <Authors>Guy Antoine and contributors</Authors>
+        <NeutralLanguage>en-GB</NeutralLanguage>
+
+        <!-- Build settings -->
+        <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
+
+        <!-- NuGet settings -->
+        <PackageId>ZenMvvm.DryIoc</PackageId>
+        <PackageTags>ZenMvvm.DryIoc</PackageTags> <!-- separate with ; -->
+        <PackageReleaseNotes>https://github.com/zenmvvm/ZenMvvm.DryIoc/releases</PackageReleaseNotes>
+        <PackageProjectUrl>https://github.com/zenmvvm/ZenMvvm.DryIoc</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/zenmvvm/ZenMvvm.DryIoc</RepositoryUrl>      
+        <PackageIcon>ZenMvvm.DryIoc-64x64.png</PackageIcon> <!--See itemgroup which points to file-->
+
+        <!-- SourceLink settings -->
+        <!-- Allows debugger to step into code of nuget package -->
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>     
+        <IncludeSymbols>true</IncludeSymbols>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="../../art/ZenMvvm.DryIoc-64x64.png">
+          <Pack>true</Pack>
+          <PackagePath>$(PackageIconUrl)</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SmartDi" Version="1.4.4-pre" />
+      <PackageReference Include="ZenMvvm" Version="0.9.0-pre" />
+    </ItemGroup>
+</Project>
