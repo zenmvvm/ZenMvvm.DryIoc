@@ -3,8 +3,8 @@
     <PropertyGroup>
         <!-- General -->
         <AssemblyName>ZenMvvm.DryIoc</AssemblyName>
-        <Description></Description>
-        <Copyright>Copyright 2020 Guy Antoine</Copyright>
+        <Description>Lightweight ViewModel-First MVVM framework for Xamarin.Forms. With ZenMvvm you can use a ViewModel-First pattern while keeping the power and familiarity of Xamarin Forms. The result? More readable and maintainable code, and a stronger separation of concerns.</Description>
+        <Copyright>Copyright 2020 ZenMvvm</Copyright>
         <Authors>Guy Antoine and contributors</Authors>
         <NeutralLanguage>en-GB</NeutralLanguage>
 
@@ -13,7 +13,7 @@
 
         <!-- NuGet settings -->
         <PackageId>ZenMvvm.DryIoc</PackageId>
-        <PackageTags>ZenMvvm.DryIoc</PackageTags> <!-- separate with ; -->
+        <PackageTags>mvvm;xamarin-forms;ioc;dependency-injection;inversion-of-control;viewmodel-first-navigation;viewmodel-first;zenmvvm;dryioc</PackageTags> <!-- separate with ; -->
         <PackageReleaseNotes>https://github.com/zenmvvm/ZenMvvm.DryIoc/releases</PackageReleaseNotes>
         <PackageProjectUrl>https://github.com/zenmvvm/ZenMvvm.DryIoc</PackageProjectUrl>
         <!-- Choose either PackageLicenseExpression or PackageLicenseFile (but not both) -->
