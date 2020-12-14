@@ -16,11 +16,13 @@
         <PackageTags>ZenMvvm.DryIoc</PackageTags> <!-- separate with ; -->
         <PackageReleaseNotes>https://github.com/zenmvvm/ZenMvvm.DryIoc/releases</PackageReleaseNotes>
         <PackageProjectUrl>https://github.com/zenmvvm/ZenMvvm.DryIoc</PackageProjectUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <!-- Choose either PackageLicenseExpression or PackageLicenseFile (but not both) -->
+        <!-- <PackageLicenseExpression>MIT</PackageLicenseExpression> -->
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/zenmvvm/ZenMvvm.DryIoc</RepositoryUrl>      
-        <PackageIcon>ZenMvvm.DryIoc-64x64.png</PackageIcon> <!--See itemgroup which points to file-->
+        <PackageIcon>icon@64x64.png</PackageIcon> <!--See itemgroup which points to file-->
 
         <!-- SourceLink settings -->
         <!-- Allows debugger to step into code of nuget package -->
@@ -29,10 +31,8 @@
         <IncludeSymbols>true</IncludeSymbols>
     </PropertyGroup>
     <ItemGroup>
-        <None Include="../../art/ZenMvvm.DryIoc-64x64.png">
-          <Pack>true</Pack>
-          <PackagePath>$(PackageIconUrl)</PackagePath>
-        </None>
+        <None Include="../../art/icon@64x64.png" Pack="true" PackagePath="$(PackageIconUrl)" />
+        <None Include="../../LICENSE.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
     <ItemGroup>
