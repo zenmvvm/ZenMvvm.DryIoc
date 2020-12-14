@@ -1,5 +1,5 @@
 ﻿using System;
-using SmartDi;
+using DryIoc;
 
 namespace ZenMvvm
 {
@@ -9,9 +9,9 @@ namespace ZenMvvm
     public static class Ioc
     {
         /// <summary>
-        /// Returns a <see cref="SmartDi.IDiContainer"/>
+        /// Returns a <see cref="DryIoc.IContainer"/>
         /// </summary>
-        public static IDiContainer Container { get; internal set; }
+        public static IContainer Container { get; internal set; }
 
         /// <summary>
         /// Initializes the <see cref="ViewModelLocator"/> with the given
@@ -19,10 +19,13 @@ namespace ZenMvvm
         ///  for Mvvm navigation.
         /// </summary>
         /// <param name="container"></param>
-        public static void Init(IDiContainer container)
+        public static void Init(IContainer container)
         {
             container
-                .Register<INavigationService, NavigationService>(Type.EmptyTypes);
+                .Register<INavigationService, NavigationService>(
+                    made: Made.Of(
+                        typeof(NavigationService)
+                        .GetConstructor(Type.EmptyTypes)));
             Container = container;
             ViewModelLocator.Ioc = new IocAdaptor(Container);
         }
@@ -33,22 +36,22 @@ namespace ZenMvvm
         ///  for Mvvm navigation.
         /// </summary>
         public static void Init()
-            => Init(new DiContainer());
+            => Init(new Container());
 
         /// <summary>
         /// Initializes the <see cref="ViewModelLocator"/> with a container 
         /// configured with provided <see cref="ContainerOptions"/> and registers
         /// <see cref="INavigationService"/> for Mvvm navigation.
         /// </summary>
-        public static void Init(ContainerOptions settings)
-            => Init(new DiContainer(settings));
+        public static void Init(Rules rules)
+            => Init(new Container(rules));
 
         /// <summary>
         /// Initializes the <see cref="ViewModelLocator"/> with a container 
         /// configured with provided configuration and registers
         /// <see cref="INavigationService"/> for Mvvm navigation.
         /// </summary>
-        public static void Init(Action<ContainerOptions> configureSettings)
-            => Init(new DiContainer(configureSettings));
+        public static void Init(Func<Rules, Rules> configureRules)
+            => Init(new Container(configureRules));
     }
 }

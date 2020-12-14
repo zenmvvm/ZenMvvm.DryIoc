@@ -1,8 +1,10 @@
 ﻿using System;
 using Moq;
-using SmartDi;
+using DryIoc;
 using Xunit;
 
+// Note that some of DryIoc classes are not mockable with Moq
+// so this test code also tests some of DryIoc
 namespace ZenMvvm.DryIoc.Tests
 {
     public class IocTests
@@ -31,9 +33,8 @@ namespace ZenMvvm.DryIoc.Tests
         public void Init_settings_SetsContainer()
         {
             Ioc.Container = null;
-            var mockSettings = new Mock<ContainerOptions>();
 
-            Ioc.Init(mockSettings.Object);
+            Ioc.Init(Rules.Default);
 
             Assert.NotNull(Ioc.Container);
         }
@@ -43,9 +44,9 @@ namespace ZenMvvm.DryIoc.Tests
         {
             Ioc.Container = null;
             ViewModelLocator.Ioc = null;
-            var mockSettings = new Mock<ContainerOptions>();
 
-            Ioc.Init(mockSettings.Object);
+            
+            Ioc.Init(Rules.Default);
 
             Assert.NotNull(ViewModelLocator.Ioc);
         }
@@ -54,9 +55,8 @@ namespace ZenMvvm.DryIoc.Tests
         public void Init_configureSettings_SetsContainer()
         {
             Ioc.Container = null;
-            var mockSettingsAction = new Mock<Action<ContainerOptions>>();
 
-            Ioc.Init(mockSettingsAction.Object);
+            Ioc.Init(rules => rules.WithDefaultIfAlreadyRegistered(IfAlreadyRegistered.Throw));
 
             Assert.NotNull(Ioc.Container);
         }
@@ -66,7 +66,7 @@ namespace ZenMvvm.DryIoc.Tests
         {
             Ioc.Container = null;
             ViewModelLocator.Ioc = null;
-            var mockSettingsAction = new Mock<Action<ContainerOptions>>();
+            var mockSettingsAction = new Mock<Func<Rules, Rules>>();
 
             Ioc.Init(mockSettingsAction.Object);
 
@@ -78,11 +78,11 @@ namespace ZenMvvm.DryIoc.Tests
         {
             Ioc.Container = null;
             ViewModelLocator.Ioc = null;
-            var mockContainer = new Mock<IDiContainer>();
+            var container = new Container();
 
-            Ioc.Init(mockContainer.Object);
+            Ioc.Init(container);
 
-            mockContainer.Verify(c => c.Register<INavigationService, NavigationService>(Type.EmptyTypes));
+            Assert.IsType<NavigationService>(Ioc.Container.Resolve<INavigationService>());                
         }
     }
 }
