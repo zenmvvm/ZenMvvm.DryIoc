@@ -37,6 +37,6 @@
 
     <ItemGroup>
       <PackageReference Include="ZenMvvm" Version="1.0.1-pre" />
-      <PackageReference Include="DryIoc.dll" Version="4.7.4" />
+      <PackageReference Include="DryIoc.dll" Version="5.0.1" />
     </ItemGroup>
 </Project>
